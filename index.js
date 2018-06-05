@@ -6,10 +6,18 @@ function WechatMessage() {
 };
 
 
-WechatMessage.prototype.xmlToJson = function(xml) {
-  return new Promise(function (resolve) {
-    xml2js.parseString(xml, { trim: true }, function (json) {
-      resolve(json);
+WechatMessage.prototype.xml2json = function(xml) {
+  return new Promise(function (resolve, reject) {
+    var options = {
+      explicitArray: false,
+      trim: true,
+    };
+    xml2js.parseString(xml, options, function (err, result) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(result.xml);
+      }
     });
   });
 };
