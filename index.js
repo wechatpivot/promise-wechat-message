@@ -1,3 +1,4 @@
+var crypto = require('crypto');
 var xml2js = require('xml2js');
 
 
@@ -6,7 +7,7 @@ function WechatMessage() {
 };
 
 
-WechatMessage.prototype.xml2json = function(xml) {
+WechatMessage.prototype.receive = function(xml) {
   return new Promise(function (resolve, reject) {
     var options = {
       explicitArray: false,
@@ -20,6 +21,14 @@ WechatMessage.prototype.xml2json = function(xml) {
       }
     });
   });
+};
+
+
+WechatMessage.prototype.verify = function (signature, timestamp, nonce, token) {
+  var shasum = crypto.createHash('sha1');
+  var arr = [token, timestamp, nonce].sort();
+  shasum.update(arr.join(''));
+  return shasum.digest('hex') === signature;
 };
 
 

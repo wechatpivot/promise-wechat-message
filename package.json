@@ -1,6 +1,6 @@
 {
   "name": "promise-wechat-message",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "微信公共平台消息处理",
   "main": "index.js",
   "scripts": {
@@ -15,9 +15,7 @@
     "wechat"
   ],
   "dependencies": {
-    "xml2js": "0.4.17",
-    "ejs": "1.0.0",
-    "wechat-crypto": "0.0.2"
+    "xml2js": "0.4.17"
   },
   "devDependencies": {
     "supertest": "*",
